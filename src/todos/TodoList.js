@@ -4,8 +4,9 @@ import Todo from './Todo';
 
 const styles = {
     ul: {
+        width: '800px',
         listStyle: 'none',
-        margin: 0,
+        margin: '0 auto',
         padding: 0,
         textAlign: 'left'
     }

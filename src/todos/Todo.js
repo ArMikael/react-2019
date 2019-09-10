@@ -9,7 +9,11 @@ const styles = {
         margin: '4px 20px',
         padding: '0.5rem 1rem',
         border: '1px solid #ccc',
-        borderRadius: '3px' 
+        borderRadius: '3px'
+    },
+
+    input: {
+        marginRight: '8px'
     },
 
     button: {
@@ -19,7 +23,8 @@ const styles = {
         backgroundColor: 'beige',
         marginLeft: '4px',
         textAlign: 'center',
-        border: 'none'
+        border: 'none',
+        cursor: 'pointer'
     }
 };
 
@@ -27,7 +32,7 @@ function Todo({ todo, index }) {
     return(
         <li style={styles.li}>
             <span>
-                <input type="checkbox" />
+                <input style={styles.input} type="checkbox" />
                 <span>{index + 1}. </span>
                 {todo.title}
             </span>
