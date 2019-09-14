@@ -28,11 +28,15 @@ const styles = {
     }
 };
 
-function Todo({ todo, index }) {
+function Todo({ todo, index, onChange }) {
     return(
         <li style={styles.li}>
             <span>
-                <input style={styles.input} type="checkbox" />
+                <input
+                    style={styles.input}
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => onChange(todo.id)} />
                 <span>{index + 1}. </span>
                 {todo.title}
             </span>
@@ -44,7 +48,8 @@ function Todo({ todo, index }) {
 
 Todo.propTypes = {
   todo: PropTypes.object.isRequired,
-  index: PropTypes.number
+  index: PropTypes.number,
+  onChange: PropTypes.func.isRequired
 };
 
 export default Todo
