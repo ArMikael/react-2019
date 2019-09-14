@@ -1,24 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoList from './todos/TodoList';
 
 function App() {
+  const todos = [
+      {id: 1, completed: true, title: 'Fix door'},
+      {id: 2, completed: false, title: 'Add silicon in bathroom'},
+      {id: 3, completed: false, title: 'Change panels'},
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>R</h1>
+      <TodoList todos={todos} />
     </div>
   );
 }
