@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from './todos/TodoList';
 import Context from './context';
+import LanguageContext from './LanguageContext';
 
 function App() {
     const [todos, setTodos] = React.useState([
@@ -23,18 +24,22 @@ function App() {
       setTodos(todos.filter(todo => todo.id !== id))
   }
 
+  const language = 'en';
+
   return (
     <Context.Provider value={{ removeTodo }}>
-        <div className="App">
-            <h1>R</h1>
+        <LanguageContext.Provider value={language}>
+            <div className="App">
+                <h1>R</h1>
 
-            { todos.length ? (
-                <TodoList todos={todos} onToggle={toggleTodo} />
-            ) : (
-                <p>No todos!</p>
-            )}
-        </div>
-    </Context.Provider>
+                { todos.length ? (
+                    <TodoList todos={todos} onToggle={toggleTodo} />
+                ) : (
+                    <p>No todos!</p>
+                )}
+            </div>
+        </LanguageContext.Provider>
+    </Context.Provider >
   );
 }
 

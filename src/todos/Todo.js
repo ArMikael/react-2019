@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import Context from '../context';
+import LanguageContext from '../LanguageContext';
 
 const styles = {
     li: {
@@ -32,6 +33,7 @@ const styles = {
 function Todo({ todo, index, onChange }) {
     const classes = [];
     const { removeTodo } = useContext(Context);
+    const language = useContext(LanguageContext);
 
     if (todo.completed){
         classes.push('done');
