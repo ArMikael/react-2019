@@ -4,6 +4,15 @@ import TodoList from './todos/TodoList';
 import Context from './context';
 import LanguageContext from './LanguageContext';
 import Counter from "./counter/Counter";
+import AppCounter from './app-counter/app-counter';
+import { observable } from 'mobx';
+
+const appState = observable({
+    count: 0,
+    plus: () => { appState.count++ },
+    minus: () => { appState.count-- },
+    reset: () => { appState.count = 0 }
+});
 
 function App() {
     const [todos, setTodos] = React.useState([
@@ -40,6 +49,7 @@ function App() {
                 )}
             </div>
 
+            <AppCounter appState={appState} />
             <Counter />
         </LanguageContext.Provider>
     </Context.Provider >
