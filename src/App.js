@@ -3,6 +3,7 @@ import './App.css';
 import TodoList from './todos/TodoList';
 import Context from './context';
 import LanguageContext from './LanguageContext';
+import Counter from "./counter/Counter";
 
 function App() {
     const [todos, setTodos] = React.useState([
@@ -38,6 +39,8 @@ function App() {
                     <p>No todos!</p>
                 )}
             </div>
+
+            <Counter />
         </LanguageContext.Provider>
     </Context.Provider >
   );
