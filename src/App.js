@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import { observable } from 'mobx';
 import TodoList from './todos/TodoList';
 import Context from './context';
 import LanguageContext from './LanguageContext';
 import Counter from "./counter/Counter";
-import AppCounter from './app-counter/app-counter';
-import { observable } from 'mobx';
+import AppCounter from './app-counter/AppCounter';
+import AddTodo from './todos/AddTodo';
 
 const appState = observable({
     count: 0,
@@ -30,6 +31,14 @@ function App() {
     }));
   }
 
+  function addTodo(title) {
+    setTodos(todos.concat({
+        id: todos.length + 1,
+        completed: false,
+        title: title
+    }));
+  }
+
   function removeTodo(id) {
       setTodos(todos.filter(todo => todo.id !== id))
   }
@@ -41,6 +50,7 @@ function App() {
         <LanguageContext.Provider value={language}>
             <div className="App">
                 <h1>R</h1>
+                <AddTodo onCreate={ addTodo } />
 
                 { todos.length ? (
                     <TodoList todos={todos} onToggle={toggleTodo} />
