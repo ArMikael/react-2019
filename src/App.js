@@ -21,25 +21,25 @@ function App() {
 
     const AddTodo = React.lazy(() => import('./todos/AddTodo'));
 
-   useEffect(() => {
+    useEffect(() => {
        fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
            .then(response => response.json())
            .then(todos =>
                setTimeout(() => {
                    setTodos(todos);
                    setLoader(false);
-               }, 3000)
+               }, 2000)
            );
-   });
+    }, []); // Передаем пустой массив, чтобы метод отработал только один раз
 
-  function toggleTodo(id) {
-    setTodos(todos.map(todo => {
-        if (todo.id === id) {
-            todo.completed = !todo.completed;
-        }
-        return todo;
-    }));
-  }
+    function toggleTodo(id) {
+        setTodos(todos.map(todo => {
+            if (todo.id === id) {
+                todo.completed = !todo.completed;
+            }
+            return todo;
+        }));
+    }
 
   function addTodo(title) {
     setTodos(todos.concat({
@@ -73,9 +73,6 @@ function App() {
                     loader ? null : <p>No todos!</p>
                 )}
             </div>
-
-
-
 
             <AppCounter appState={appState} />
             <Counter />
