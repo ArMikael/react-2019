@@ -6,7 +6,6 @@ import Context from './context';
 import LanguageContext from './LanguageContext';
 import Counter from "./counter/Counter";
 import AppCounter from './app-counter/AppCounter';
-import AddTodo from './todos/AddTodo';
 import Loader from './Loader';
 
 const appState = observable({
@@ -19,6 +18,8 @@ const appState = observable({
 function App() {
     const [todos, setTodos] = React.useState([]);
     const [loader, setLoader] = React.useState(true);
+
+    const AddTodo = React.lazy(() => import('./todos/AddTodo'));
 
    useEffect(() => {
        fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
@@ -59,7 +60,11 @@ function App() {
         <LanguageContext.Provider value={language}>
             <div className="App">
                 <h1>R</h1>
-                <AddTodo onCreate={ addTodo } />
+
+                <React.Suspense fallback={ <p>Loading...</p> }>
+                    <AddTodo onCreate={ addTodo } />
+                </React.Suspense>
+
                 { loader && <Loader /> }
 
                 { todos.length ? (
