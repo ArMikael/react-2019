@@ -7,6 +7,7 @@ import LanguageContext from './LanguageContext';
 import Counter from "./counter/Counter";
 import AppCounter from './app-counter/AppCounter';
 import Loader from './Loader';
+import Modal from "./modal/Modal";
 
 const appState = observable({
     count: 0,
@@ -74,6 +75,7 @@ function App() {
                 )}
             </div>
 
+            <Modal />
             <AppCounter appState={appState} />
             <Counter />
         </LanguageContext.Provider>
