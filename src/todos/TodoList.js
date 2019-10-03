@@ -32,4 +32,4 @@ TodoList.propTypes = {
     onToggle: PropTypes.func.isRequired
 };
 
-export default TodoList
+export default TodoList;

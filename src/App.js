@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import { observable } from 'mobx';
 import TodoList from './todos/TodoList';
@@ -7,6 +7,7 @@ import LanguageContext from './LanguageContext';
 import Counter from "./counter/Counter";
 import AppCounter from './app-counter/AppCounter';
 import AddTodo from './todos/AddTodo';
+import Loader from './Loader';
 
 const appState = observable({
     count: 0,
@@ -16,11 +17,19 @@ const appState = observable({
 });
 
 function App() {
-    const [todos, setTodos] = React.useState([
-        {id: 1, completed: true, title: 'Fix door'},
-        {id: 2, completed: false, title: 'Add silicon in bathroom'},
-        {id: 3, completed: false, title: 'Change panels'},
-    ]);
+    const [todos, setTodos] = React.useState([]);
+    const [loader, setLoader] = React.useState(true);
+
+   useEffect(() => {
+       fetch('https://jsonplaceholder.typicode.com/todos?_limit=5')
+           .then(response => response.json())
+           .then(todos =>
+               setTimeout(() => {
+                   setTodos(todos);
+                   setLoader(false);
+               }, 3000)
+           );
+   });
 
   function toggleTodo(id) {
     setTodos(todos.map(todo => {
@@ -51,13 +60,17 @@ function App() {
             <div className="App">
                 <h1>R</h1>
                 <AddTodo onCreate={ addTodo } />
+                { loader && <Loader /> }
 
                 { todos.length ? (
                     <TodoList todos={todos} onToggle={toggleTodo} />
                 ) : (
-                    <p>No todos!</p>
+                    loader ? null : <p>No todos!</p>
                 )}
             </div>
+
+
+
 
             <AppCounter appState={appState} />
             <Counter />
