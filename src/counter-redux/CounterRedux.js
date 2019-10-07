@@ -19,7 +19,7 @@ const styles = {
 
     ul: {
         listStyle: 'none',
-        margin: '0'
+        padding: '0'
     }
 };
 
@@ -43,11 +43,11 @@ class CounterRedux extends React.Component {
                 </div>
 
                 <ul style={styles.ul}>
-                    {
-                        this.props.results.map(res => {
-                            return <li key={res.id}>{ res.value }</li>;
-                        })
-                    }
+                    { this.props.storedResults.map(result => (
+                         <li id={result.id} key={result.id} onClick={() => this.props.onDeleteResult(result.id) }>
+                            { result.value }
+                         </li>
+                    ))}
                 </ul>
             </section>
         );
@@ -57,7 +57,7 @@ class CounterRedux extends React.Component {
 const mapStateToProps = state => {
     return {
         ctr: state.counter,
-        results: state.results
+        storedResults: state.results
     }
 };
 
@@ -68,7 +68,8 @@ const mapDispatchToProps = dispatch => {
         onAddCounter: () => dispatch({ type: 'ADD_COUNTER', value: 5}),
         onSubtractCounter: () => dispatch({ type: 'SUBTRACT_COUNTER', value: 5}),
         onResetCounter: () => dispatch({ type: 'RESET_COUNTER'}),
-        onStoreResult: () => dispatch({ type: 'STORE_RESULT'})
+        onStoreResult: () => dispatch({ type: 'STORE_RESULT'}),
+        onDeleteResult: (id) => dispatch({ type: 'DELETE_RESULT', resultId: id})
     }
 };
 
