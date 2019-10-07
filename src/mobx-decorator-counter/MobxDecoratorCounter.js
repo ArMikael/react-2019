@@ -3,7 +3,7 @@ import { observable, action } from 'mobx';
 import { observer } from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
-@observer class Counter extends React.Component {
+@observer class MobxDecoratorCounter extends React.Component {
     @observable count = 0;
 
     @action increment = () => {
@@ -25,4 +25,4 @@ import DevTools from 'mobx-react-devtools';
     }
 }
 
-export default Counter;
+export default MobxDecoratorCounter;

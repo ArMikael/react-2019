@@ -17,10 +17,10 @@ const styles = {
     }
 };
 
-const AppCounter = observer(props => {
+const MobxPropsStateCounter = observer(props => {
     return(
         <section className='app-counter' style={styles.section}>
-            App counter:
+            MobX counter:
             <h2>{ props.appState.count }</h2>
             <button style={ styles.button } onClick={ props.appState.minus }>Minus</button>
             <button style={ styles.button } onClick={ props.appState.plus }>Plus</button>
@@ -32,4 +32,4 @@ const AppCounter = observer(props => {
     );
 });
 
-export default AppCounter;
+export default MobxPropsStateCounter;

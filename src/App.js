@@ -4,8 +4,9 @@ import { observable } from 'mobx';
 import TodoList from './todos/TodoList';
 import Context from './context';
 import LanguageContext from './LanguageContext';
-import Counter from "./counter/Counter";
-import AppCounter from './app-counter/AppCounter';
+import MobxDecoratorCounter from "./mobx-decorator-counter/MobxDecoratorCounter";
+import MobxPropsStateCounter from './mobx-props-state-counter/MobxPropsStateCounter';
+import CounterRedux from './counter-redux/CounterRedux';
 import Loader from './Loader';
 import Modal from "./modal/Modal";
 
@@ -60,7 +61,7 @@ function App() {
     <Context.Provider value={{ removeTodo }}>
         <LanguageContext.Provider value={language}>
             <div className="App">
-                <h1>R</h1>
+                <h1>React</h1>
 
                 <React.Suspense fallback={ <p>Loading...</p> }>
                     <AddTodo onCreate={ addTodo } />
@@ -76,8 +77,10 @@ function App() {
             </div>
 
             <Modal />
-            <AppCounter appState={appState} />
-            <Counter />
+
+            <CounterRedux />
+            <MobxPropsStateCounter appState={appState} />
+            <MobxDecoratorCounter />
         </LanguageContext.Provider>
     </Context.Provider >
   );
