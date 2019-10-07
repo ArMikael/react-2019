@@ -12,8 +12,14 @@ const styles = {
 
     button: {
         marginRight: '10px',
+        marginBottom: '10px',
         backgroundColor: 'transparent',
         border: '1px solid green'
+    },
+
+    ul: {
+        listStyle: 'none',
+        margin: '0'
     }
 };
 
@@ -31,6 +37,18 @@ class CounterRedux extends React.Component {
                 <div>
                     <button style={ styles.button } onClick={ this.props.onResetCounter }>Reset</button>
                 </div>
+
+                <div className="buttons-wrapper">
+                    <button style={ styles.button } onClick={ this.props.onStoreResult }>Save Result</button>
+                </div>
+
+                <ul style={styles.ul}>
+                    {
+                        this.props.results.map(res => {
+                            return <li key={res.id}>{ res.value }</li>;
+                        })
+                    }
+                </ul>
             </section>
         );
     }
@@ -38,7 +56,8 @@ class CounterRedux extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter
+        ctr: state.counter,
+        results: state.results
     }
 };
 
@@ -48,7 +67,8 @@ const mapDispatchToProps = dispatch => {
         onDecrementCounter: () => dispatch({ type: 'DEC_COUNTER'}),
         onAddCounter: () => dispatch({ type: 'ADD_COUNTER', value: 5}),
         onSubtractCounter: () => dispatch({ type: 'SUBTRACT_COUNTER', value: 5}),
-        onResetCounter: () => dispatch({ type: 'RESET_COUNTER'})
+        onResetCounter: () => dispatch({ type: 'RESET_COUNTER'}),
+        onStoreResult: () => dispatch({ type: 'STORE_RESULT'})
     }
 };
 
