@@ -17,6 +17,27 @@ const reducer = (state = initialState, action) => {
         }
     }
 
+    if (action.type === 'ADD_COUNTER') {
+        return {
+            ...state,
+            counter: state.counter + action.value
+        }
+    }
+
+    if (action.type === 'SUBTRACT_COUNTER') {
+        return {
+            ...state,
+            counter: state.counter - action.value
+        }
+    }
+
+    if (action.type === 'RESET_COUNTER') {
+        return {
+            ...state,
+            counter: state.counter = 0
+        }
+    }
+
     return state;
 };
 
