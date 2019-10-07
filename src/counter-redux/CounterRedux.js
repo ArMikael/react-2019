@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import * as actionTypes from '../store/actions';
 
 const styles = {
     section: {
@@ -63,13 +64,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onIncrementCounter: () => dispatch({ type: 'INC_COUNTER'}),
-        onDecrementCounter: () => dispatch({ type: 'DEC_COUNTER'}),
-        onAddCounter: () => dispatch({ type: 'ADD_COUNTER', value: 5}),
-        onSubtractCounter: () => dispatch({ type: 'SUBTRACT_COUNTER', value: 5}),
-        onResetCounter: () => dispatch({ type: 'RESET_COUNTER'}),
-        onStoreResult: () => dispatch({ type: 'STORE_RESULT'}),
-        onDeleteResult: (id) => dispatch({ type: 'DELETE_RESULT', resultId: id})
+        onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT_COUNTER }),
+        onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT_COUNTER }),
+        onAddCounter: () => dispatch({ type: actionTypes.ADD_COUNTER, value: 5}),
+        onSubtractCounter: () => dispatch({ type: actionTypes.SUBTRACT_COUNTER, value: 5}),
+        onResetCounter: () => dispatch({ type: actionTypes.RESET_COUNTER}),
+        onStoreResult: () => dispatch({ type: actionTypes.STORE_RESULT}),
+        onDeleteResult: (id) => dispatch({ type: actionTypes.DELETE_RESULT, resultId: id})
     }
 };
 
