@@ -33,7 +33,7 @@ class CounterRedux extends React.Component {
                 <button style={ styles.button } onClick={ this.props.onDecrementCounter }>Minus</button>
                 <button style={ styles.button } onClick={ this.props.onIncrementCounter }>Plus</button>
                 <button style={ styles.button } onClick={ this.props.onSubtractCounter }>Minus 5</button>
-                <button style={ styles.button } onClick={ this.props.onAddCounter }>Plus 5</button>
+                <button style={ styles.button } onClick={ this.props.onAddCounterr }>Plus 5</button>
 
                 <div>
                     <button style={ styles.button } onClick={ this.props.onResetCounter }>Reset</button>

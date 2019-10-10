@@ -9,6 +9,7 @@ import MobxPropsStateCounter from './mobx-props-state-counter/MobxPropsStateCoun
 import CounterRedux from './counter-redux/CounterRedux';
 import Loader from './Loader';
 import Modal from "./modal/Modal";
+import ErrorBoundary from './error-boundary/ErrorBoundary'
 
 const appState = observable({
     count: 0,
@@ -64,7 +65,9 @@ function App() {
                 <h1>React</h1>
 
                 <React.Suspense fallback={ <p>Loading...</p> }>
-                    <AddTodo onCreate={ addTodo } />
+                    <ErrorBoundary>
+                        <AddTodo onCreate={ addTodo } />
+                    </ErrorBoundary>
                 </React.Suspense>
 
                 { loader && <Loader /> }
@@ -81,6 +84,7 @@ function App() {
             <CounterRedux />
             <MobxPropsStateCounter appState={appState} />
             <MobxDecoratorCounter />
+
         </LanguageContext.Provider>
     </Context.Provider >
   );
