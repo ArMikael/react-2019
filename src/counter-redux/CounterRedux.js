@@ -40,7 +40,7 @@ class CounterRedux extends React.Component {
                 </div>
 
                 <div className="buttons-wrapper">
-                    <button style={ styles.button } onClick={ this.props.onStoreResult }>Save Result</button>
+                    <button style={ styles.button } onClick={ () => this.props.onStoreResult(this.props.ctr) }>Save Result</button>
                 </div>
 
                 <ul style={styles.ul}>
@@ -57,8 +57,8 @@ class CounterRedux extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        ctr: state.counter,
-        storedResults: state.results
+        ctr: state.ctr.counter,
+        storedResults: state.res.results
     }
 };
 
@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => {
         onAddCounter: () => dispatch({ type: actionTypes.ADD_COUNTER, value: 5}),
         onSubtractCounter: () => dispatch({ type: actionTypes.SUBTRACT_COUNTER, value: 5}),
         onResetCounter: () => dispatch({ type: actionTypes.RESET_COUNTER}),
-        onStoreResult: () => dispatch({ type: actionTypes.STORE_RESULT}),
+        onStoreResult: (result) => dispatch({ type: actionTypes.STORE_RESULT, result: result }),
         onDeleteResult: (id) => dispatch({ type: actionTypes.DELETE_RESULT, resultId: id})
     }
 };
